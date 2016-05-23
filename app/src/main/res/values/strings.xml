@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+
+    <string name="pref_sort_type_label_popularity">Popularity</string>
+    <string name="pref_sort_type_label_vote_average">Rating</string>
+
+    <string name="pref_sort_type_popularity">popularity</string>
+    <string name="pref_sort_type_vote_average">vote_average</string>
+
+    <string name="pref_sort_type">sort</string>
+
+    <string name="menu_settings">Settings</string>
+</resources>

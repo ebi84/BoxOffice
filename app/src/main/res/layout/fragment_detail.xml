@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context= ".DetailActivity$DetailFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container"
+        android:background="@color/colorPrimaryDark">
+
+
+        <ImageView
+            android:id="@+id/d_movie_poster"
+            android:layout_width="220dp"
+            android:layout_height="320dp"
+            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="4dp"
+            android:paddingLeft="4dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/lin_layout"
+            android:layout_toRightOf="@id/d_movie_poster"
+            android:paddingLeft="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id= "@+id/d_movie_title"
+                android:textSize="24sp"
+                android:textColor="#fde000"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id= "@+id/d_vote_average"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id= "@+id/d_popularity"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:paddingBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id= "@+id/d_release_date"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id= "@+id/d_overview"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_below="@id/d_movie_poster"
+            android:paddingTop="20dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="20dp"/>
+
+        <ImageView
+            android:id="@+id/d_movie_backdrop"
+            android:layout_width="340dp"
+            android:layout_height="340dp"
+            android:scaleType="centerCrop"
+            android:layout_below="@id/d_overview"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="4dp"/>
+
+
+    </RelativeLayout>
+
+
+
+</ScrollView>
