@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -102,12 +103,18 @@ public class MainActivityFragment  extends Fragment{
         selected_sort_type = prefs.getString(getString(R.string.pref_sort_type), getString(R.string.pref_sort_type_popularity));
 
         if (selected_sort_type.equals(getString(R.string.pref_sort_type_popularity))){
-            sortMethod = "popularity.desc";
+            sortMethod = "popular";
 
         }else{
-            sortMethod = "vote_average.desc";
+            sortMethod = "top_rated";
         }
-        moviesTask.execute(sortMethod);
+        Context context = getActivity();
+        if (!isNetworkAvailable(context)) {
+            Toast.makeText(context,"Failed to connect to the internet",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            moviesTask.execute(sortMethod);
+        }
     }
 
     @Override
@@ -129,10 +136,10 @@ public class MainActivityFragment  extends Fragment{
         selected_sort_type = prefs.getString(getString(R.string.pref_sort_type), getString(R.string.pref_sort_type_popularity));
         if (requestCode == 1) {
             if (selected_sort_type.equals(selected_sort_type)){
-                sortMethod = "popularity.desc";
+                sortMethod = "popular";
 
             }else{
-                sortMethod = "vote_average.desc";
+                sortMethod = "top_rated";
             }
             this.updateMovies();
         }
@@ -200,15 +207,11 @@ public class MainActivityFragment  extends Fragment{
 
             try{
 
-                final String MOVIES_BASE_URL ="http://api.themoviedb.org/3/discover/movie";
-                final String SORT_BY = "sort_by";
+                final String MOVIES_BASE_URL ="http://api.themoviedb.org/3/movie/" + sortMethod;
                 final String APIKEY_PARAM = "api_key";
-                final String API_PAGE = "page";
 
 
                 Uri builtUri = Uri.parse(MOVIES_BASE_URL).buildUpon()
-                        .appendQueryParameter(SORT_BY, sortMethod)
-                        .appendQueryParameter(API_PAGE, "1")
                         .appendQueryParameter(APIKEY_PARAM, BuildConfig.MY_API_KEY)
                         .build();
 
@@ -288,5 +291,10 @@ public class MainActivityFragment  extends Fragment{
             }
 
         }
+    }
+
+    public boolean isNetworkAvailable(final Context context) {
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 }
